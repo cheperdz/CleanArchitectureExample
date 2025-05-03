@@ -9,6 +9,8 @@ namespace EFC.Template.Repositories;
 
 public class WeatherRepository(WeatherTemplateDbContext context) : IWeatherRepository
 {
+    private readonly WeatherTemplateDbContext _context = context;
+
     public Task<Result<CreateWeatherOutputDto>> CreateWeather(CreateWeatherInputDto input)
     {
         try
@@ -17,15 +19,15 @@ public class WeatherRepository(WeatherTemplateDbContext context) : IWeatherRepos
                 return Task.FromResult<Result<CreateWeatherOutputDto>>(GeneralError.BadRequest);
 
             var weather = new Weather { Name = input.Name };
-            var valueTask = context.Weathers.AddAsync(weather);
-            Console.WriteLine(valueTask.Result); // TODO => SeriLog
+            var valueTask = _context.Weathers.AddAsync(weather);
 
-            var justCreatedWeather = context.Weathers.Last();
+            Console.WriteLine(valueTask.Result); // TODO => SeriLog
+            if (valueTask.IsCompletedSuccessfully)
+                _context.SaveChangesAsync();
 
             var output = new CreateWeatherOutputDto
             {
-                Id = justCreatedWeather.Id,
-                Name = justCreatedWeather.Name
+                Name = weather.Name
             };
 
             return Task.FromResult(Result<CreateWeatherOutputDto>.Success(output));
@@ -50,8 +52,8 @@ public class WeatherRepository(WeatherTemplateDbContext context) : IWeatherRepos
             if (input.Id <= 0)
                 return Task.FromResult<Result<GetWeatherOutputDto>>(GeneralError.BadRequest);
 
-            var weather = context.Weathers.FirstOrDefault(w => w.Id == input.Id);
-            
+            var weather = _context.Weathers.FirstOrDefault(w => w.Id == input.Id);
+
             if (weather == null)
                 return Task.FromResult<Result<GetWeatherOutputDto>>(GeneralError.NotFound);
 
