@@ -6,4 +6,14 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EFC\EFC.csproj" />
+      <ProjectReference Include="..\Interactors\Interactors.csproj" />
+      <ProjectReference Include="..\Presenters\Presenters.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1,35 +1,38 @@
-// using Presenters;
-// using InversionOfControl;
-// using EntityFrameworkCore;
-// using EntityFrameworkCore.Repositories;
-// using InteractorPorts.Calendar.Bloque.Input;
-// using InteractorPorts.Calendar.Bloque.Output;
-// using Microsoft.EntityFrameworkCore;
-// using Microsoft.OpenApi.Models;
+using IoC;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen(options =>
-// {
-//     options.SwaggerDoc("v1", new OpenApiInfo
-//     {
-//         Version = "v1",
-//         Title = "Mi API",
-//         Description = "Descripción de mi API"
-//     });
-// });
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Template API",
+        Description = "Template API using Clean Architecture with MySQL as Database, template is dockerized on the API section, programmed by irony",
+        License = new OpenApiLicense
+        {
+            Name = "MIT License",
+            Url = new Uri("https://opensource.org/licenses/MIT")
+        }
+    });
+});
 
-// builder.Services.AddProjectDependencies(builder.Configuration); // Inversión de control, ¿Se pueden agregar más cosas que estén en Program.cs?
+builder.Services.AddProjectDependencies(builder.Configuration);
 
 builder.Services.AddCors
 (
-    options => options.AddDefaultPolicy(builder =>
-        builder.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader())
+    options => options.AddDefaultPolicy
+    (
+        policyBuilder =>
+            policyBuilder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+    )
 );
 
 var app = builder.Build();
@@ -40,15 +43,15 @@ app.Use(async (context, next) => // Middleware de registro de solicitudes
     await next.Invoke();
 });
 
-// app.UseSwagger();
-// app.UseSwaggerUI(c =>
-// {
-//     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mi API v1");
-//     c.RoutePrefix = string.Empty; // opcional: hace que Swagger UI sea la página principal
-// });
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Template API - Clean Architecture");
+    c.RoutePrefix = string.Empty; // Hacer que Swagger UI sea la página principal
+});
 
 app.UseRouting();
 app.UseCors();
-app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+app.MapControllers();
 
 app.Run();
