@@ -26,6 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Controllers\Controllers.csproj" />
       <ProjectReference Include="..\IoC\IoC.csproj" />
     </ItemGroup>
 
