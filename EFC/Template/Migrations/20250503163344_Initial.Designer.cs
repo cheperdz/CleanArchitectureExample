@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFC.Migrations
 {
     [DbContext(typeof(WeatherTemplateDbContext))]
-    [Migration("20250503162836_Initial")]
+    [Migration("20250503163344_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
