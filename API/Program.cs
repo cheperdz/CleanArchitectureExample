@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Version = "v1",
         Title = "Template API",
-        Description = "Template API using Clean Architecture with MySQL as Database, template is dockerized on the API section, programmed by irony",
+        Description = "Template API using Clean Architecture with a SQLite .db file as Database, template is dockerized on the API section, programmed by irony",
         License = new OpenApiLicense
         {
             Name = "MIT License",
