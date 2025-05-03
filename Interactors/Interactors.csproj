@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\EFC\EFC.csproj" />
       <ProjectReference Include="..\Ports\Ports.csproj" />
     </ItemGroup>
 

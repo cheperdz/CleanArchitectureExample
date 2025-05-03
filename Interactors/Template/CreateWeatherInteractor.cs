@@ -1,12 +1,24 @@
 ﻿using DTO.Template.Input;
+using EFC.Template.Repositories.Interfaces;
 using Ports.Template.Input;
+using Ports.Template.Output;
 
 namespace Interactors.Template;
 
-public class CreateWeatherInteractor : ICreateWeatherInputPort
+public class CreateWeatherInteractor(IWeatherRepository weatherRepository, ICreateWeatherOutputPort createWeatherOutputPort) : ICreateWeatherInputPort
 {
-    public Task Handle(CreateWeatherInputDto input)
+    public async Task Handle(CreateWeatherInputDto input)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var result = await weatherRepository.CreateWeather(input);
+            createWeatherOutputPort.Handle(result);
+        }
+
+        catch (Exception ex)
+        {
+            Console.WriteLine("Excepción en CreateBloqueTimespanInteractor: " + ex.Message);
+            throw;
+        }
     }
 }
