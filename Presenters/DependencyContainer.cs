@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Ports.Template.Output;
-using Presenters.Template;
+using Ports.Output;
 
 namespace Presenters;
 

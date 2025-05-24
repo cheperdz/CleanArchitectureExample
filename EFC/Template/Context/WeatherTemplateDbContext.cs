@@ -1,5 +1,5 @@
 ﻿using EFC.Template.Configuration;
-using Entities.Template;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFC.Template.Context;

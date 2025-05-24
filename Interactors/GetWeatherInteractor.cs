@@ -1,9 +1,9 @@
-﻿using DTO.Template.Input;
+﻿using DTO.Input;
 using EFC.Template.Repositories.Interfaces;
-using Ports.Template.Input;
-using Ports.Template.Output;
+using Ports.Input;
+using Ports.Output;
 
-namespace Interactors.Template;
+namespace Interactors;
 
 public class GetWeatherInteractor(IWeatherRepository weatherRepository, IGetWeatherOutputPort getWeatherOutputPort) : IGetWeatherInputPort
 {

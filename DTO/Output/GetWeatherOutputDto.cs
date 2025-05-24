@@ -1,4 +1,4 @@
-﻿namespace DTO.Template.Output;
+﻿namespace DTO.Output;
 
 public class GetWeatherOutputDto
 {

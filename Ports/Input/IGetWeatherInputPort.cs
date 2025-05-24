@@ -1,6 +1,6 @@
-﻿using DTO.Template.Input;
+﻿using DTO.Input;
 
-namespace Ports.Template.Input;
+namespace Ports.Input;
 
 public interface IGetWeatherInputPort
 {

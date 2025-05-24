@@ -1,7 +1,7 @@
-﻿using DTO.Template.Output;
+﻿using DTO.Output;
 using Patterns.Result;
 
-namespace Ports.Template.Output;
+namespace Ports.Output;
 
 public interface IGetWeatherOutputPort
 {

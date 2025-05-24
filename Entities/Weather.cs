@@ -1,4 +1,4 @@
-﻿namespace Entities.Template;
+﻿namespace Entities;
 
 public class Weather
 {

@@ -1,12 +1,12 @@
-﻿using DTO.Template.Input;
-using DTO.Template.Output;
+﻿using DTO.Input;
+using DTO.Output;
 using Microsoft.AspNetCore.Mvc;
-using Patterns.Result;
-using Ports.Template.Input;
-using Ports.Template.Output;
 using Patterns.Presenter;
+using Patterns.Result;
+using Ports.Input;
+using Ports.Output;
 
-namespace Controllers.Template;
+namespace Controllers;
 
 [ApiController, Route("api/[controller]")]
 public class WeatherController
