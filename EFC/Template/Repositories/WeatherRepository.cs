@@ -1,8 +1,8 @@
-﻿using DTO.Template.Input;
-using DTO.Template.Output;
+﻿using DTO.Input;
+using DTO.Output;
 using EFC.Template.Context;
 using EFC.Template.Repositories.Interfaces;
-using Entities.Template;
+using Entities;
 using Patterns.Result;
 
 namespace EFC.Template.Repositories;
@@ -16,7 +16,7 @@ public class WeatherRepository(WeatherTemplateDbContext context) : IWeatherRepos
         try
         {
             if (string.IsNullOrWhiteSpace(input.Name))
-                return Task.FromResult<Result<CreateWeatherOutputDto>>(GeneralError.BadRequest);
+                return Task.FromResult<Result<CreateWeatherOutputDto>>(GeneralCodes.BadRequest);
 
             var weather = new Weather { Name = input.Name };
             var valueTask = _context.Weathers.AddAsync(weather);
@@ -40,7 +40,7 @@ public class WeatherRepository(WeatherTemplateDbContext context) : IWeatherRepos
             if (ex.InnerException is not null)
                 Console.Write("INNER EX: " + ex.InnerException);
 
-            return Task.FromResult<Result<CreateWeatherOutputDto>>(GeneralError.InternalServerError);
+            return Task.FromResult<Result<CreateWeatherOutputDto>>(GeneralCodes.InternalServerError);
         }
     }
 
@@ -50,12 +50,12 @@ public class WeatherRepository(WeatherTemplateDbContext context) : IWeatherRepos
         try
         {
             if (input.Id <= 0)
-                return Task.FromResult<Result<GetWeatherOutputDto>>(GeneralError.BadRequest);
+                return Task.FromResult<Result<GetWeatherOutputDto>>(GeneralCodes.BadRequest);
 
             var weather = _context.Weathers.FirstOrDefault(w => w.Id == input.Id);
 
             if (weather == null)
-                return Task.FromResult<Result<GetWeatherOutputDto>>(GeneralError.NotFound);
+                return Task.FromResult<Result<GetWeatherOutputDto>>(GeneralCodes.NotFound);
 
             var output = new GetWeatherOutputDto
             {
@@ -73,7 +73,7 @@ public class WeatherRepository(WeatherTemplateDbContext context) : IWeatherRepos
             if (ex.InnerException is not null)
                 Console.Write("INNER EX: " + ex.InnerException);
 
-            return Task.FromResult<Result<GetWeatherOutputDto>>(GeneralError.InternalServerError);
+            return Task.FromResult<Result<GetWeatherOutputDto>>(GeneralCodes.InternalServerError);
         }
     }
 }

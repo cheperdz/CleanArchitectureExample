@@ -1,6 +1,6 @@
 ﻿namespace Patterns.Result;
 
-public static class GeneralError
+public static class GeneralCodes
 {
     // 400's
     public static readonly Code BadRequest = new (400, "Input is not valid");

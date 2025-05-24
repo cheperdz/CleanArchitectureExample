@@ -1,5 +1,5 @@
-﻿using DTO.Template.Input;
-using DTO.Template.Output;
+﻿using DTO.Input;
+using DTO.Output;
 using Patterns.Result;
 
 namespace EFC.Template.Repositories.Interfaces;

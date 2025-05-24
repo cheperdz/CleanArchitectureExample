@@ -1,4 +1,4 @@
-﻿namespace DTO.Template.Input;
+﻿namespace DTO.Input;
 
 public class CreateWeatherInputDto
 {

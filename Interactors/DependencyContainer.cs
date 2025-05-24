@@ -1,6 +1,5 @@
-﻿using Interactors.Template;
-using Microsoft.Extensions.DependencyInjection;
-using Ports.Template.Input;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Ports.Input;
 
 namespace Interactors;
 

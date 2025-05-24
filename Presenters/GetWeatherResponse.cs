@@ -1,9 +1,9 @@
-﻿using DTO.Template.Output;
+﻿using DTO.Output;
 using Patterns.Presenter;
 using Patterns.Result;
-using Ports.Template.Output;
+using Ports.Output;
 
-namespace Presenters.Template;
+namespace Presenters;
 
 public class GetWeatherResponse : IGetWeatherOutputPort, IPresenter<Result<GetWeatherOutputDto>>
 {
